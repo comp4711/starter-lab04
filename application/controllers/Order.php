@@ -17,9 +17,14 @@ class Order extends Application {
 
     // start a new order
     function neworder() {
-        //FIXME
-
-        redirect('/order/display_menu/' . $order_num);
+        $order = $this->orders->create();
+        $order->num = $this->orders->highest() + 1;
+        $order->date = date('Y-m-d H:i:s');
+        $order->status = 'a';
+        
+        $this->orders->add($order);
+        
+        redirect('/order/display_menu/' . $order->num);
     }
 
     // add to an order
@@ -31,23 +36,39 @@ class Order extends Application {
         $this->data['order_num'] = $order_num;
         //FIXME
 
+        $order = $this->orders->get($order_num);
+        $total = number_format( $this->orders->total($order_num), 2);
+        $this->data['title'] = 'Order #' . $order->num;
+        $this->data['title'] .= ' ($' . $total . ')';
+        
         // Make the columns
         $this->data['meals'] = $this->make_column('m');
         $this->data['drinks'] = $this->make_column('d');
         $this->data['sweets'] = $this->make_column('s');
 
+        // --- CODEIGNITER BUG FIX ---
+        foreach ($this->data['meals'] as &$item)
+            $item->order_num = $order_num;
+        
+        foreach ($this->data['drinks'] as &$item)
+            $item->order_num = $order_num;
+        
+        foreach ($this->data['sweets'] as &$item)
+            $item->order_num = $order_num;
+        
         $this->render();
     }
 
     // make a menu ordering column
     function make_column($category) {
-        //FIXME
+        $items = $this->menu->some('category', $category);
         return $items;
     }
 
     // add an item to an order
     function add($order_num, $item) {
         //FIXME
+        $this->orders->add_item($order_num, $item);
         redirect('/order/display_menu/' . $order_num);
     }
 
@@ -56,20 +77,41 @@ class Order extends Application {
         $this->data['title'] = 'Checking Out';
         $this->data['pagebody'] = 'show_order';
         $this->data['order_num'] = $order_num;
-        //FIXME
 
+        $total = number_format( $this->orders->total($order_num), 2);
+        $this->data['total'] = '$' . $total;
+
+        $items = $this->orderitems->group($order_num);
+        foreach($items as $item) {
+            $menuitem = $this->menu->get($item->item);
+            $item->code = $menuitem->name;
+        }
+        
+        $this->data['items'] = $items;
+        $this->data['okornot'] = $this->orders->validate($order_num) ? '' : 'disabled';
+        echo "OKORNOT: " . $this->data['okornot'];
+        
         $this->render();
     }
-
+    
     // proceed with checkout
-    function proceed($order_num) {
-        //FIXME
+    function commit($order_num) {
+        if (!$this->orders->validate($order_num))
+            redirect('/order/display_menu/' . $order_num);
+        $record = $this->orders->get($order_num);
+        $record->date = date(DATE_ATOM);
+        $record->status = 'c';
+        $record->total = $this->orders->total($order_num);
+        $this->orders->update($record);
         redirect('/');
     }
 
     // cancel the order
     function cancel($order_num) {
-        //FIXME
+        $this->orderitems->delete_some($order_num);
+        $record = $this->orders->get($order_num);
+        $record->status = 'x';
+        $this->orders->update($record);
         redirect('/');
     }
 
