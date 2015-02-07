@@ -34,8 +34,8 @@ class Order extends Application {
 
         $this->data['pagebody'] = 'show_menu';
         $this->data['order_num'] = $order_num;
-        //FIXME
 
+        // Append the Order Total to the Page Title
         $order = $this->orders->get($order_num);
         $total = number_format( $this->orders->total($order_num), 2);
         $this->data['title'] = 'Order #' . $order->num;
@@ -67,7 +67,6 @@ class Order extends Application {
 
     // add an item to an order
     function add($order_num, $item) {
-        //FIXME
         $this->orders->add_item($order_num, $item);
         redirect('/order/display_menu/' . $order_num);
     }
@@ -78,9 +77,11 @@ class Order extends Application {
         $this->data['pagebody'] = 'show_order';
         $this->data['order_num'] = $order_num;
 
+        // Format the Order Total for Display
         $total = number_format( $this->orders->total($order_num), 2);
         $this->data['total'] = '$' . $total;
 
+        // Assign the name of the menu category to the item code for view templating
         $items = $this->orderitems->group($order_num);
         foreach($items as $item) {
             $menuitem = $this->menu->get($item->item);
@@ -88,8 +89,9 @@ class Order extends Application {
         }
         
         $this->data['items'] = $items;
+        
+        // If the order is invalid, assign "disabled" to the okornot template variable.
         $this->data['okornot'] = $this->orders->validate($order_num) ? '' : 'disabled';
-        echo "OKORNOT: " . $this->data['okornot'];
         
         $this->render();
     }

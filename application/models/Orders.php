@@ -16,11 +16,13 @@ class Orders extends MY_Model {
     function add_item($num, $code) {
         $CI = &get_instance();
         
+        // If an item of the given type already is already ordered, update it's quantity.
         if ($CI->orderitems->exists($num, $code)) {
             $record = $CI->orderitems->get($num, $code);
             $record->quantity++;
             $CI->orderitems->update($record);
         }
+        // If no item of the given type is already ordered, add a new one to the order.
         else {
             $record = $CI->orderitems->create();
             $record->order = $num;
@@ -36,6 +38,7 @@ class Orders extends MY_Model {
         $items = $this->orderitems->some('order', $num);
         $total = 0.0;
         
+        // Sum the price for each kind of menu item.
         foreach ($items as $item) {
             $menuItem = $this->menu->get($item->item);
             $total += ($menuItem->price * $item->quantity);
@@ -61,6 +64,7 @@ class Orders extends MY_Model {
         $items = $CI->orderitems->group($num);
         $chosen = array();
         
+        // Create an array that contains all used menu categories as indicies.
         if (count($items) > 0) {
             foreach($items as $item) {
                 $menu = $CI->menu->get($item->item);
@@ -68,6 +72,7 @@ class Orders extends MY_Model {
             }
         }
         
+        // Return valid only if 'm', 'd,' and 's' categories were used.
         return (isset($chosen['m']) && isset($chosen['d']) && isset($chosen['s']));
     }
 
