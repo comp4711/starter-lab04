@@ -38,7 +38,7 @@ class Order extends Application {
         $this->data['pagebody'] = 'show_menu';
         $this->data['order_num'] = $order_num;
         //FIXME
-
+        $this->date['title'] = "Order # " .$order_num;
         // Make the columns
         $this->data['meals'] = $this->make_column('m');
         $this->data['drinks'] = $this->make_column('d');
@@ -72,7 +72,7 @@ class Order extends Application {
     // make a menu ordering column
     function make_column($category) {
         //FIXME
-        return $items;
+        return $this->menu->some('category', $category);
     }
 
     // add an item to an order
