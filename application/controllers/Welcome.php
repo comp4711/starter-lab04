@@ -24,7 +24,7 @@ class Welcome extends Application {
         $this->data['pagebody'] = 'welcome';
 
         // Get all the completed orders
-        //FIXME
+        $completed = $this->orders->some('status','c');
 
         // Build a multi-dimensional array for reporting
         $orders = array();
@@ -34,7 +34,7 @@ class Welcome extends Application {
                 'datetime' => $order->date,
                 'amount' => $order->total
             );
-            $orders[] = $this1;
+            $order[] = $this1;
         }
 
         // and pass these on to the view
