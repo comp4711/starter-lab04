@@ -103,7 +103,15 @@ class Order extends Application {
 
     // proceed with checkout
     function proceed($order_num) {
-        //FIXME
+        if (!$this->order->validate($order_num))
+            redirect('/order/display_menu/' . $order_num);
+        
+        $record = $this->orders->get($order_num);
+        $record->date = date(DATE_ATOM);
+        $record->status = 'c';
+        $record->total = $this->order->total($order_num);
+        $this->order->update($record);
+
         redirect('/');
     }
 
