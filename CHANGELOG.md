@@ -12,3 +12,6 @@
 
 ### v1.4 (2/10/2016)
 * Completed Step4 (Displaying order menu)
+
+### v1.5 (2/10/2016)
+* Completed Step5 (Handling order addition).
