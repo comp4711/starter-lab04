@@ -25,6 +25,7 @@ class Welcome extends Application {
 
         // Get all the completed orders
         //FIXME
+        $completed = $this->orders->some('status', 'c');
 
         // Build a multi-dimensional array for reporting
         $orders = array();
