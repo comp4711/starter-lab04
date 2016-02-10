@@ -9,3 +9,6 @@
 
 ### v1.3 (2/10/2016)
 * Completed Step3 (Fixing the Orders controller for creating a new order).
+
+### v1.4 (2/10/2016)
+* Completed Step4 (Displaying order menu)
