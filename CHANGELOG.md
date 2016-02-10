@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.0.3
+**Modified Files: **
+-Welcome.php
+fixed Homepage
+
 ## 1.0.2
 **Modified Files: **
 -autoload.php
