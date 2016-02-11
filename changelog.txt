@@ -1,4 +1,5 @@
 Newest changes at the top
 Format: MM/DD/YYYY HH:MM - comment  
 
+02/11/2016 13:53 - Fixed configuration
 02/11/2016 13:42 - Initial Setup
