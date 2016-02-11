@@ -23,7 +23,8 @@ class Orders extends MY_Model
             $record = $CI->orderitems->get($num,$code);
             $record->quantity++;
             $CI->orderitems->update($record);
-        } else
+        } 
+        else
         {
             $record = $CI->orderitems->create();
             $record->order = $num;
