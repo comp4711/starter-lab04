@@ -9,21 +9,31 @@
  *
  * ------------------------------------------------------------------------
  */
-class Order extends Application {
+class Order extends Application 
+    {
 
     function __construct() {
         parent::__construct();
     }
 
     // start a new order
-    function neworder() {
-        //FIXME
-
+    function neworder() 
+    {
+        $order_num = $this->orders->highest() + 1;
+        
+        $neworder = $this->orders->create();
+        $neworder->num = $order_num;
+        $neworder->date = date();
+        $neworder->status = 'a';
+        $neworder->total = 0;
+        $this->orders->add($neworder);
+        
         redirect('/order/display_menu/' . $order_num);
     }
 
     // add to an order
-    function display_menu($order_num = null) {
+    function display_menu($order_num = null) 
+        {
         if ($order_num == null)
             redirect('/order/neworder');
 
@@ -56,25 +66,29 @@ class Order extends Application {
     }
 
     // inject order # into nested variable pair parameters
-    function hokeyfix($varpair,$order) {
+    function hokeyfix($varpair,$order) 
+    {
 	foreach($varpair as &$record)
 	    $record->order_num = $order;
     }
     
     // make a menu ordering column
-    function make_column($category) {
+    function make_column($category) 
+    {
         //FIXME
         return $items;
     }
 
     // add an item to an order
-    function add($order_num, $item) {
+    function add($order_num, $item) 
+    {
         //FIXME
         redirect('/order/display_menu/' . $order_num);
     }
 
     // checkout
-    function checkout($order_num) {
+    function checkout($order_num) 
+    {
         $this->data['title'] = 'Checking Out';
         $this->data['pagebody'] = 'show_order';
         $this->data['order_num'] = $order_num;
@@ -84,13 +98,15 @@ class Order extends Application {
     }
 
     // proceed with checkout
-    function commit($order_num) {
+    function commit($order_num) 
+    {
         //FIXME
         redirect('/');
     }
 
     // cancel the order
-    function cancel($order_num) {
+    function cancel($order_num) 
+    {
         //FIXME
         redirect('/');
     }
