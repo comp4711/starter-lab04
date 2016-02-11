@@ -13,6 +13,8 @@ class Order extends Application {
 
     function __construct() {
         parent::__construct();
+        
+        $this->load->model('orders');
     }
 
     // start a new order
@@ -24,7 +26,8 @@ class Order extends Application {
         $neworder->date = date();
         $neworder->status = 'a';
         $neworder->total = 0;
-        $neworder->orders->add($neworder);             
+        
+        $this->orders->add($neworder);             
 
         redirect('/order/display_menu/' . $order_num);
     }
