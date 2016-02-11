@@ -13,11 +13,21 @@ class Order extends Application {
 
     function __construct() {
         parent::__construct();
+        
+        $this->load->model('orders');
     }
 
     // start a new order
     function neworder() {
-        //FIXME
+        $order_num= $this->orders->highest() +1;
+        
+        $neworder = $this->orders->create();
+        $neworder->num = $order_num;
+        $neworder->date = date();
+        $neworder->status = 'a';
+        $neworder->total = 0;
+        
+        $this->orders->add($neworder);             
 
         redirect('/order/display_menu/' . $order_num);
     }
