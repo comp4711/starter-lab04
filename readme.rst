@@ -11,7 +11,7 @@ Your job is to fix it, following the directions in lab 04.
 Team Members
 ************
 
-Lin Zhu - hanabishirin
+Lin Zhu - hanabishirin  
 Chris Leclair - XCVG
 
 ***********
