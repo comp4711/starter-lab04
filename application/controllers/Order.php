@@ -42,7 +42,7 @@ class Order extends Application {
         $this->data['order_num'] = $order_num;
         //FIXME
         $this->orders->get($order_num);
-        $this->data['title'] = 'Order # '.$order_num. '( ' .number_format($this->orders->total($order_num), 2, '.', ',') . ')';
+        $this->data['title'] = 'Order # '.$order_num. ' (' .number_format($this->orders->total($order_num), 2, '.', ',') . ')';
         // Make the columns
         $this->data['meals'] = $this->make_column('m');
         $this->data['drinks'] = $this->make_column('d');
@@ -103,7 +103,6 @@ class Order extends Application {
             $item->code = $menuitem->name;
         }
         $this->data['items'] = $items;
-        $this->data['okornot'] = $this->orders->validate($order_num) ? "" : "disabled";
 
         $this->render();
     }
