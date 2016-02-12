@@ -48,12 +48,15 @@ class Orders extends MY_Model {
 
     // retrieve the details for an order
     function details($num) {
-        
+	$CI = & get_instance();
+        $items = $CI->orderitems->group($num);
+        return $items;
     }
 
     // cancel an order
     function flush($num) {
-        
+	$CI = & get_instance();
+        $items = $CI->orderitems->delete_some($order_num);
     }
 
     // validate an order
