@@ -1,6 +1,7 @@
 Newest at the top
 
-Feb 11, 2016, 16:55 Feature 3 Order Display
+Feb 11, 2016, 17:52 Feature 5 Handle order additions
+Feb 11, 2016, 16:55 Feature 3 + 4 Order Display
 Feb 11, 2016, 16:37 Feature 2 Homepage.
 Feb 11, 2016, 16:19 Feature 1 Configuration.
 Feb 11, 2016, 14:32 Setup
