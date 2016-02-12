@@ -92,7 +92,7 @@ class Order extends Application {
 
 	$this->data['total'] = number_format($this->orders->total($order_num), 2);
 
-	$items = $this->orderitems->group($order_num);
+        $items = $this->orders->details($order_num);
 	foreach ($items as $item)
 	{
 		$menuitem = $this->menu->get($item->item);
@@ -120,7 +120,7 @@ class Order extends Application {
 
     // cancel the order
     function cancel($order_num) {
-        $this->orderitems->delete_some($order_num);
+        $this->orders->flush($order_num);
         $record = $this->orders->get($order_num);
         $record->status = 'x';
         $this->orders->update($record);
