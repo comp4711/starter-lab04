@@ -1,5 +1,6 @@
 Newest at the top
 
+Feb 15, 2016, 14:51 Feature 6 Handle Checkout
 Feb 12, 2016, 00:05 Feature 7 Handle Completion
 Feb 11, 2016, 17:52 Feature 5 Handle order additions
 Feb 11, 2016, 16:55 Feature 3 + 4 Order Display
