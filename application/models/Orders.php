@@ -29,6 +29,7 @@ class Orders extends MY_Model
             $record = $CI->orderitems->create();
             $record->order = $num;
             $record->item = $code;
+            $record->quantity = 1;
             $CI ->orderitems->add($record);
         }
     }
