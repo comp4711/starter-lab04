@@ -1,6 +1,7 @@
 Newest changes at the top
 Format: MM/DD/YYYY HH:MM - comment  
 
+02/15/2016 13:01 - Fixed checkout validation
 02/11/2016 15:10 - Fixed add_item function in both model and controller
 02/11/2016 14:45 - Fixed order page display (items and total)
 02/11/2016 14:25 - Fixed neworder() in Order class
