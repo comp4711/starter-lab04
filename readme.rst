@@ -31,6 +31,14 @@ words separated by underscore
 
 underscore first for internal items  
 
+***********
+Parts Taken
+***********
+
+Chris - Worked on Part 1,2,4,6
+
+Lin - Worked on Part 3,5,7
+
 *******************
 Server Requirements
 *******************
