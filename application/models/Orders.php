@@ -13,13 +13,38 @@ class Orders extends MY_Model {
     }
 
     // add an item to an order
-    function add_item($num, $code) {
-        
-    }
+  function add_item($num, $code) {
+         
+       $this->load->model('orderitems');
+ 
+         $CI = & get_instance();
+         if ($CI->orderitems->exists($num, $code)) {
+             $record = $CI->orderitems->get($num, $code);
+             $record->quantity++;
+             $CI->orderitems->update($record);
+        } else {
+            $record = $CI->orderitems->create();
+             $record->order = $num;
+             $record->item = $code;
+             $record->quantity = 1;
+             $CI->orderitems->add($record);
+         }
+      }
 
     // calculate the total for an order
     function total($num) {
-        return 0.0;
+        
+        
+        $CI = & get_instance();
+        $items = $CI->orderitems->group($num);
+        $result = 0;
+        if (count($items) > 0)
+            foreach ($items as $item)
+        {
+            $menu = $CI->menu->get($item->item);
+            $result += $item->quantity * $menu->price;
+            }
+            return $result;
     }
 
     // retrieve the details for an order
@@ -29,13 +54,24 @@ class Orders extends MY_Model {
 
     // cancel an order
     function flush($num) {
-        
+        $CI =& get_instance();
+        $CI->orderitems->delete_some($num);
     }
 
     // validate an order
     // it must have at least one item from each category
     function validate($num) {
-        return false;
+        $CI = & get_instance();
+        $items = $CI->orderitems->group($num);
+        $gotem = array();
+        if (count($items) > 0)
+            foreach ($items as $item)
+            {
+                $menu = $CI->menu->get($item->item);
+                $gotem[$menu->category] = 1;
+            }
+        
+        return isset($gotem['m']) && isset($gotem['d']) && isset($gotem['s']);
     }
 
 }

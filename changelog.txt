@@ -1,0 +1,14 @@
+Newest at top
+
+2/15/2016 8:37pm validation was missing from #6 <- re-added
+                 flush(), cancel(), and commit() completed 
+                 controller/Order.php was giving error so i recreated it(KLW)
+2/15/2016 8:15pm fixed view parameter and greyed out proceed button in 
+    checkout page (KLW)
+2/15/2016 7:26pm fixed add item, start new order and config base url (RD)
+2/15/2016 5:38pm fixed title - order total (RD)
+2/15/2016 5:38pm fixed handle order display (RD)
+2/15/2016 4:22pm fixed handle new order (RD)
+2/15/2016 3:40pm fixed homepage -no errors (RD)
+2/15/2016 3:40pm fixed autoload for database (RD)
+2/15/2016 2:50pm fixed configuration for database (RD)
