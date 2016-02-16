@@ -1,4 +1,6 @@
 Newest at top
+
+2/15/2016 7:26pm fixed add item, start new order and config base url
 2/15/2016 5:38pm fixed title - order total
 2/15/2016 5:38pm fixed handle order display
 2/15/2016 4:22pm fixed handle new order
