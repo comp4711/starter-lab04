@@ -96,12 +96,23 @@ class Order extends Application {
     // proceed with checkout
     function commit($order_num) {
         //FIXME
+        if(!$this->orders->validate($order_num))
+            redirect('/orders/display_menu/') . $order_num;
+        $record = $this->orders->get($order_num);
+        $record->Date = date(DATE_ATOM);
+        $record->status = 'c';
+        $record->total = $this->orders->total($order_num);
+        $this->orders->update($record);
         redirect('/');
     }
 
     // cancel the order
     function cancel($order_num) {
         //FIXME
+        $this->orderitems->Delete_some($order_num);
+        $record = $this->orders->get($order_num);
+        $record->status = 'x';
+        $this->orders->update($record);
         redirect('/');
     }
 
