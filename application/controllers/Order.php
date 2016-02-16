@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Order handler
  * 
@@ -10,32 +9,39 @@
  * ------------------------------------------------------------------------
  */
 class Order extends Application {
-
     function __construct() {
         parent::__construct();
     }
-
     // start a new order
     function neworder() {
-        //FIXME
-
+        //fixed order function
+        
+        $this->load->model('orders');
+        $order_num = $this->orders->highest() + 1;
+        
+        $neworder = $this->orders->create();
+        
+        $neworder->num = $order_num;
+        $neworder->date = date();
+        $neworder->status = 'a';
+        $neworder->total = 0;
+        $this->orders->add($neworder);
+        
         redirect('/order/display_menu/' . $order_num);
     }
-
     // add to an order
     function display_menu($order_num = null) {
-        if ($order_num == null)
+        if ($order_num == null) {
             redirect('/order/neworder');
-
+        }
         $this->data['pagebody'] = 'show_menu';
         $this->data['order_num'] = $order_num;
-        //FIXME
-
+        //Fixed the title
+  $this->data['title'] = 'Order #' . $order_num.' ('.  number_format($this->orders->total($order_num),2).')';
         // Make the columns
         $this->data['meals'] = $this->make_column('m');
         $this->data['drinks'] = $this->make_column('d');
         $this->data['sweets'] = $this->make_column('s');
-
 	// Bit of a hokey patch here, to work around the problem of the template
 	// parser no longer allowing access to a parent variable inside a
 	// child loop - used for the columns in the menu display.
@@ -54,7 +60,6 @@ class Order extends Application {
 	
         $this->render();
     }
-
     // inject order # into nested variable pair parameters
     function hokeyfix($varpair,$order) {
 	foreach($varpair as &$record)
@@ -63,36 +68,32 @@ class Order extends Application {
     
     // make a menu ordering column
     function make_column($category) {
-        //FIXME
-        return $items;
+        
+       // fixed order display
+        $this->load->model('menu');
+      return $this->menu->some('category',$category);
     }
-
     // add an item to an order
     function add($order_num, $item) {
         //FIXME
         redirect('/order/display_menu/' . $order_num);
     }
-
     // checkout
     function checkout($order_num) {
         $this->data['title'] = 'Checking Out';
         $this->data['pagebody'] = 'show_order';
         $this->data['order_num'] = $order_num;
         //FIXME
-
         $this->render();
     }
-
     // proceed with checkout
     function commit($order_num) {
         //FIXME
         redirect('/');
     }
-
     // cancel the order
     function cancel($order_num) {
         //FIXME
         redirect('/');
     }
-
 }
