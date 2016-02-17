@@ -25,8 +25,7 @@ $config['menu_choices'] = array(
 | environments.
 |
 */
-$config['base_url'] = '';
-
+$config['base_url'] = '/';
 /*
 |--------------------------------------------------------------------------
 | Index File
