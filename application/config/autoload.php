@@ -40,7 +40,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 
-$autoload['packages'] = array();
+$autoload['packages'] = array(APPPATH . 'third_party');
 
 
 /*
@@ -60,7 +60,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
 
-$autoload['libraries'] = array('parser');
+$autoload['libraries'] = array('database','parser');
 
 
 /*
@@ -136,5 +136,4 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-
-$autoload['model'] = array();
+$autoload['model'] = array('menu','orderitems','orders');
