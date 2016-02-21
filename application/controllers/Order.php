@@ -96,14 +96,7 @@ class Order extends Application {
         }
         $this->data['items'] = $items;
 
-        if( $this->orders->validate($order_num) ) 
-        {
-            $this->data['okornot'] = "";
-        }
-        else 
-        {
-            $this->data['okornot'] = "disabled";
-        }
+        $this->data['okornot'] = $this->orders->validate($order_num);
 
         $this->render();
     }

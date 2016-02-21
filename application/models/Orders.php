@@ -64,8 +64,14 @@ class Orders extends MY_Model {
                 $menu = $CI->menu->get($item->item);
                 $gotem[$menu->category] = 1;
             }
-        return (isset($gotem['n']) && isset($gotem['d']) && isset($gotem['s'])); 
-        
+        if(isset($gotem['n']) && isset($gotem['d']) && isset($gotem['s'])) 
+        {
+            return "active";
+        }
+        else 
+        {
+            return "disabled";
+        }
     }
 
 }
