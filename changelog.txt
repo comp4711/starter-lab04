@@ -4,4 +4,5 @@ Feb 20, 2016   [5:15pm]        Step 1. Added autoload information. - Vivek
 Feb 20, 2016   [5:22pm]		   Step 2. Fix Welcome controller. 	   - Vivek
 Feb 20, 2016   [5:53pm]        Step 3. Fix redirect for new order. - Jaegar
 Feb 20, 2016   [6:12pm]		   Step 4. Fix order page.		 	   - Vivek
+Feb 20, 2016   [6:28pm]		   Step 4. Fix ordering food.	 	   - Jaegar
 
