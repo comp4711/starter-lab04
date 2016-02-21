@@ -7,6 +7,18 @@ This project is the starter for COMP4711 Lab 4, for the Fall 2015 session.
 This webapp is broken. On purpose :) 
 Your job is to fix it, following the directions in lab 04.
 
+@@@@@@@@@@@@@@@@
+Contributors
+@@@@@@@@@@@@@@@@
+
+Lab for:
+	Jaegar Sarauer		A00925935
+	Vivek Kalia		A00780409
+
+Github Link: https://github.com/JaegarSarauer/starter-jimsjoint/tree/master
+
+@@@@@@@@@@@@@@@@
+
 *******************
 Server Requirements
 *******************
