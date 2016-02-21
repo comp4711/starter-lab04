@@ -7,4 +7,5 @@ Feb 20, 2016   [6:12pm]		   Step 4. Fix order page.		 	   					- Vivek
 Feb 20, 2016   [6:28pm]		   Step 5. Fix ordering food.	 	   					- Jaegar
 Feb 20, 2016   [6:48pm]		   Step 6. Fix checkout and valid	   					- Vivek
 Feb 20, 2016   [6:59pm]		   Step 7. Orders are displayed on main page now.	    - Jaegar
+Feb 21, 2016   [2:54pm]		   Fix up validation a little bit. 					    - Jaegar
 
