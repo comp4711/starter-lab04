@@ -1,4 +1,5 @@
 Date and Time                 Change detail
 
 Feb 20, 2016   [5:15pm]        Step 1. Added autoload information. - Vivek
+Feb 20, 2016   [5:22pm]		   Step 2. Fix Welcome controller. 	   - Vivek
 
