@@ -14,7 +14,21 @@ class Orders extends MY_Model {
 
     // add an item to an order
     function add_item($num, $code) {
-        
+        $CI = &get_instance();
+        if($CI->orderitems->exists($num, $code))
+        {
+            $record = $CI->orderitems->get($num, $code);
+            $record->quantity++;
+            $CI->orderitems->update($record);
+        } 
+        else
+        {
+            $record = $CI->orderitems->create();
+            $record->order = $num;
+            $record->item = $code;
+            $record->quantity = 1;
+            $CI->orderitems->add($record);
+        }
     }
 
     // calculate the total for an order
@@ -23,11 +37,13 @@ class Orders extends MY_Model {
         $items = $CI->orderitems->group($num);
         $result = 0;
         if(count($items) > 0)
+        {
             foreach ($items as $item)
             {
                 $menu = $CI->menu->get($item->item);
                 $result += $item->quantity * $menu->price;
             }
+        }          
         return $result;
     }
 
