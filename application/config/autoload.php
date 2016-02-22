@@ -60,7 +60,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
 
-$autoload['libraries'] = array('parser');
+$autoload['libraries'] = array('parser', 'database');
 
 
 /*
@@ -122,7 +122,6 @@ $autoload['config'] = array();
 
 $autoload['language'] = array();
 
-
 /*
 | -------------------------------------------------------------------
 |  Auto-load Models
@@ -136,5 +135,5 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-
-$autoload['model'] = array();
+ 
+$autoload['model'] = array('Menu', 'Orders', 'Orderitems');
